@@ -20,7 +20,10 @@ Thanks in advance!
 
 ------------------
 
-Sample POST input:
+Sample POST input located in 
+```
+/weco-backend-test/sample/tests/sample_data/sample_post_data.json
+```
 ```json
 {
     "orders" : [

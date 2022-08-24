@@ -33,9 +33,13 @@ class OrderListView(GenericAPIView):
         """
         # Fill this out.  Should return all orders, JSON encoded
 
-        # ADD EXCEPTION HANDLING
-        orders = Order.objects.all()
-        orders_json = serializers.serialize('json', orders)
+        try:
+            orders = Order.objects.all()
+            orders_json = serializers.serialize('json', orders)
+        except Exception:
+            return HttpResponse("Error occurred: " + traceback.format_exc(),
+                                content_type='application/json',
+                                status=status.HTTP_400_BAD_REQUEST)
         return HttpResponse(orders_json, content_type='application/json', status=status.HTTP_200_OK)
 
     def post(self, request):
@@ -61,7 +65,7 @@ class OrderListView(GenericAPIView):
                     ordered_item.unit_price = item["unit_price"]
                     ordered_item.save()
 
-        except Exception as e:
+        except Exception:
             return HttpResponse("Error occurred: " + traceback.format_exc(),
                                 content_type='application/json',
                                 status=status.HTTP_400_BAD_REQUEST)
