@@ -24,7 +24,7 @@ class OrderListView(GenericAPIView):
     For a POST, creates a new Order
     """
 
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     # noinspection PyMethodMayBeStatic
     def get(self, request):
@@ -34,7 +34,7 @@ class OrderListView(GenericAPIView):
         # Fill this out.  Should return all orders, JSON encoded
 
         # ADD EXCEPTION HANDLING
-        orders = OrderedItem.objects.all()
+        orders = Order.objects.all()
         orders_json = serializers.serialize('json', orders)
         return HttpResponse(orders_json, content_type='application/json', status=status.HTTP_200_OK)
 

@@ -21,5 +21,5 @@ from sample.views import OrderListView, OrderStatsView
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r"^api/v1/orders/$", OrderListView.as_view()),
-    re_path(r"^api/v1/orderstats/$", OrderStatsView.as_view()),
+    re_path(r"^api/v1/orderstats/$", OrderStatsView.as_view()),  # Added this URL
 ]
